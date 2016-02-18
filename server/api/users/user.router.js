@@ -17,6 +17,7 @@ router.param('id', function (req, res, next, id) {
 });
 
 router.get('/', function (req, res, next) {
+	if (!req.user) res.status(500)
 	User.find({}).exec()
 	.then(function (users) {
 		res.json(users);
